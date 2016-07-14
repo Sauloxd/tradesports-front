@@ -33,6 +33,12 @@ module.exports = function makeWebpackConfig () {
     app: './src/app/app.js'
   };
 
+  config.resolve = {
+     alias: {
+       'masonry': 'masonry-layout',
+       'isotope': 'isotope-layout'
+     }
+   }
   /**
    * Output
    * Reference: http://webpack.github.io/docs/configuration.html#output
@@ -80,6 +86,16 @@ module.exports = function makeWebpackConfig () {
   config.module = {
     preLoaders: [],
     loaders: [
+      // Font-Awesome-Webpack
+      //
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&minetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
+      },
       {
         test: /\.js$/,
         loaders: ['ng-annotate']
@@ -177,6 +193,11 @@ module.exports = function makeWebpackConfig () {
   // Add build specific plugins
   if (isProd) {
     config.plugins.push(
+      new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery",
+          "window.jQuery": "jquery"
+      }),
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
       // Only emit files when there are no errors
       new webpack.NoErrorsPlugin(),
