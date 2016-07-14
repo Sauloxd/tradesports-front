@@ -30,7 +30,7 @@ module.exports = function makeWebpackConfig () {
    * Karma will set this when it's a test build
    */
   config.entry = isTest ? {} : {
-    app: './src/app/index.js'
+    app: './src/app/app.js'
   };
 
   /**
@@ -79,7 +79,12 @@ module.exports = function makeWebpackConfig () {
   // Initialize module
   config.module = {
     preLoaders: [],
-    loaders: [{
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['ng-annotate']
+      },
+      {
       // JS LOADER
       // Reference: https://github.com/babel/babel-loader
       // Transpile .js files using babel-loader
