@@ -6,7 +6,7 @@ var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-
+var path = require('path');
 /**
  * Env
  * Get npm lifecycle event to identify the environment
@@ -131,12 +131,21 @@ module.exports = function makeWebpackConfig () {
       // You can add here any file extension you want to get copied to your output
       test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
       loader: 'file'
-    }, {
-      // HTML LOADER
-      // Reference: https://github.com/webpack/raw-loader
-      // Allow loading html through js
+    },
+    // {
+    //   test: /\.html$/,
+    //   include: [
+    //     path.resolve(__dirname, "src/public/index.html"),
+    //     path.resolve(__dirname, "src/app"),
+    //   ],
+    //   loader: "raw"
+    // },
+    {
       test: /\.html$/,
-      loader: 'raw'
+      exclude: [
+        path.resolve(__dirname, "src/public/index.html")
+      ],
+      loader: "raw"
     }]
   };
 

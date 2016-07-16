@@ -220,7 +220,7 @@
 				offset = container.closest('[role="banner"]').hasClass('type_5') ? 0 : -container.outerHeight(),
 				menu = $('.menu_wrap'),
 				mHeight = menu.outerHeight();
-				console.log(mHeight);
+				// console.log(mHeight);
 			container.waypoint(function(direction){
 				var _this = $(this);
 				if(direction == "down"){
@@ -1383,38 +1383,38 @@ $('#shopping_button').on('mouseenter',function(){
 		})();
 
 		// flexslider
-
-		(function(){
-			var flx = $('.flexslider:not(.simple_slide_show)');
-
-			if(flx.length){
-				flx.flexslider({
-					animation : "slide",
-					animationSpeed : 1000,
-					prevText: "<i class='fa fa-angle-left'></i>",
-					nextText: "<i class='fa fa-angle-right'></i>",
-					slideshow:false,
-					start: function(){
-		   			var image = $('.flexslider [data-custom-thumb]'),
-			   			len = image.length,
-			   			bullet = $('.flex-control-nav li');
-			   			for(var i = 0; i < len; i++){
-			   				bullet.eq(i).append('<div class="custom_thumb tr_all_hover"><img src="' + image.eq(i).data('custom-thumb') + '" alt=""></div>');
-			   			}
-						$('.flex-control-nav li').each(function(){
-							var curr = $(this);
-							curr.on("mouseenter mouseleave",function(){
-								curr.children('.custom_thumb').toggleClass('active')
-							});
-						});
-						bullet.find('.custom_thumb').on('click',function(){
-							return false;
-						});
-					}
-				});
-			}
-
-		})();
+		// 
+		// (function(){
+		// 	var flx = $('.flexslider:not(.simple_slide_show)');
+		// 	console.log('flex, ', flx);
+		// 	if(flx.length){
+		// 		flx.flexslider({
+		// 			animation : "slide",
+		// 			animationSpeed : 1000,
+		// 			prevText: "<i class='fa fa-angle-left'></i>",
+		// 			nextText: "<i class='fa fa-angle-right'></i>",
+		// 			slideshow:false,
+		// 			start: function(){
+		//    			var image = $('.flexslider [data-custom-thumb]'),
+		// 	   			len = image.length,
+		// 	   			bullet = $('.flex-control-nav li');
+		// 	   			for(var i = 0; i < len; i++){
+		// 	   				bullet.eq(i).append('<div class="custom_thumb tr_all_hover"><img src="' + image.eq(i).data('custom-thumb') + '" alt=""></div>');
+		// 	   			}
+		// 				$('.flex-control-nav li').each(function(){
+		// 					var curr = $(this);
+		// 					curr.on("mouseenter mouseleave",function(){
+		// 						curr.children('.custom_thumb').toggleClass('active')
+		// 					});
+		// 				});
+		// 				bullet.find('.custom_thumb').on('click',function(){
+		// 					return false;
+		// 				});
+		// 			}
+		// 		});
+		// 	}
+		//
+		// })();
 
 		// simple slideshow
 
