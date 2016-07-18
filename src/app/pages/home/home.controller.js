@@ -1,6 +1,6 @@
 var homeController = function (crudService, $uibModal) {
   var vm = this;
-  vm.teste = 'oi';
+
   crudService.get('produto')
     .then(function(response){
       console.log('this are the products: ', response.data[0]);

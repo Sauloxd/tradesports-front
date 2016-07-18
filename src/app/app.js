@@ -3,6 +3,7 @@ import uirouter from 'angular-ui-router';
 
 import routing from './app.config';
 import home from './pages/home';
+import cart from './pages/cart';
 //Flatastic Imports
 
 
@@ -26,7 +27,7 @@ class AppCtrl {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, home])
+angular.module(MODULE_NAME, [uirouter, home, cart])
   .config(routing)
   .controller('AppCtrl', AppCtrl);
 
