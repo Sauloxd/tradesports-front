@@ -21,7 +21,12 @@
 				<section class="col-lg-12 col-md-12 col-sm-12">
 					<h2 class="tt_uppercase color_dark m_bottom_10 heading5">Featured products</h2>
 					<!--products-->
-          <div ng-include="'product-list.html'"></div>
+          <section class="products_container a_type_2 category_grid clearfix m_bottom_25">
+            <!--product item-->
+
+            <product-item ng-repeat="product in vm.products" data="product"></product-item>
+          </section>
+
 					<!--banners-->
           <div ng-include="'slim-banner.html'"></div>
 
