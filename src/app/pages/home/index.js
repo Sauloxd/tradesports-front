@@ -1,7 +1,8 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
 
-import dummyService from '../services/dummy.service';
+import crudService from '../../factories/crud.js';
+import constService from '../../factories/constants.js';
 
 import "font-awesome-webpack";
 import 'expose?jQuery!jquery/dist/jquery.min.js';
@@ -25,8 +26,10 @@ import 'imports?$=jquery!../../../js/flatastic.js';
 
 
 import routing from './home.routes';
-import HomeController from './home.controller';
-export default angular.module('app.home', [uirouter, dummyService])
+import homeController from './home.controller';
+import productDirective from '../../components/product/product-item.directive'
+export default angular.module('app.home', [uirouter, crudService])
   .config(routing)
-  .controller('HomeController', HomeController)
+  .controller('homeController', homeController)
+  .directive('productItem', productDirective)
   .name; //Exporta o nome do modulo pra poder por na injecao de dependencia do angular

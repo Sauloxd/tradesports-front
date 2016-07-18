@@ -95,123 +95,123 @@
 
 	(function(){
 		globalDfd.done(function(){
-		$('.products_container:not(.a_type_2) .photoframe.animate_ftb').waypointSynchronise({
-			container : '.products_container',
-			delay : 200,
-			offset : 700,
-			classN : "animate_vertical_finished"
-		});
-		$('.products_container.a_type_2 .photoframe.animate_ftb').waypointSynchronise({
-			container : '.products_container',
-			delay : 200,
-			offset : 700,
-			classN : "animate_vertical_finished"
-		});
-		$('.wfilter_carousel .photoframe.animate_ftb').waypointSynchronise({
-			container : '.wfilter_carousel',
-			delay : 200,
-			offset : 700,
-			classN : "animate_vertical_finished"
-		});
-		$('.bestsellers_carousel .photoframe.animate_ftb').waypointSynchronise({
-			container : '.bestsellers_carousel',
-			delay : 200,
-			offset : 700,
-			globalDelay : 400,
-			classN : "animate_vertical_finished"
-		});
-		$('.banner_type_2[class*="animate_ft"]').waypointSynchronise({
-			container : '.row',
-			delay : 200,
-			offset : 800,
-			classN : "animate_vertical_finished"
-		});
-		$('.animate_half_tc').waypointSynchronise({
-			container : '.row',
-			delay : 0,
-			offset : 830,
-			classN : "animate_horizontal_finished"
-		});
-		$('.heading2').waypointInit('animate_sj_finished animate_fade_finished','800px');
-		$('.nav_buttons_wrap.animate_fade').waypointInit('animate_sj_finished animate_fade_finished','800px');
-		$('.product_brands a.animate_fade').waypointSynchronise({
-			container : '.product_brands',
-			delay : 200,
-			offset : 830,
-			classN : "animate_sj_finished animate_fade_finished"
-		});
-		$('.blog_carousel a.photoframe').waypointSynchronise({
-			container : '.blog_animate.animate_ftr',
-			delay : 0,
-			offset : 830,
-			classN : "animate_vertical_finished"
-		});
-		$('.blog_carousel .mini_post_content > .animate_ftr').waypointSynchronise({
-			container : '.blog_animate.animate_ftr',
-			delay : 200,
-			offset : 830,
-			classN : "animate_horizontal_finished"
-		});
-		$('.blog_animate.animate_ftr').waypointInit('animate_horizontal_finished','800px');
-		$('.ti_animate.animate_ftr').waypointInit('animate_horizontal_finished','800px',1000);
-		$('.testiomials_carousel .animate_ftr:first').waypointInit('animate_horizontal_finished','851px',1200);
-		$('.testiomials_carousel .animate_ftr:nth-child(2)').waypointInit('animate_horizontal_finished','973px',1400);
-		$('.testiomials_carousel .animate_ftr:nth-child(3)').waypointInit('animate_horizontal_finished','987px',1600);
-		$('.heading1.animate_ftr').waypointInit('animate_horizontal_finished','1000px');
-		$('.isotope_menu > li.animate_ftr').waypointSynchronise({
-			container : '.isotope_menu',
-			delay : 200,
-			offset : 1000,
-			classN : "animate_horizontal_finished"
-		});
-		$('.flexslider.animate_ftr').waypointInit('animate_horizontal_finished','1000px');
-		setTimeout(function(){
-			$('.s_banners .d_block.animate_ftr').waypointSynchronise({
-				container : '.s_banners',
-				delay : 300,
-				offset : 830,
-				classN : "animate_horizontal_finished"
-			});
-		},200);
-		$('.widget.animate_ftr').waypointInit('animate_horizontal_finished','800px',200);
-		$('.heading5').waypointInit('animate_horizontal_finished','800px');
-		$('.banner.animate_ftr').waypointSynchronise({
-			container : '.row',
-			delay : 200,
-			offset : 1000,
-			globalDelay : 800,
-			classN : "animate_horizontal_finished"
-		});
-		$('.nc_carousel .photoframe.animate_ftb').waypointSynchronise({
-			container : '.nc_carousel',
-			delay : 200,
-			offset : 700,
-			classN : "animate_vertical_finished"
-		});
-		$('.info_blocks_container .animate_ftr').waypointSynchronise({
-			container : '.info_blocks_container',
-			delay : 200,
-			offset : 700,
-			classN : "animate_vertical_finished"
-		});
-		$('.our_recent_work_carousel .animate_ftb').waypointSynchronise({
-			container : '.our_recent_work_carousel',
-			delay : 200,
-			offset : 700,
-			classN : "animate_vertical_finished"
-		});
-		$('.p_tables .animate_fade').waypointSynchronise({
-			container : '.p_tables',
-			delay : 200,
-			offset : 700,
-			classN : "animate_fade_finished"
-		});
-		$('.animate_corporate_container .animate_fade').waypointSynchronise({
-			container : '.animate_corporate_container',
-			delay : 200,
-			offset : 700,
-			classN : "animate_fade_finished"
-		});
+		// $('.products_container:not(.a_type_2) .photoframe.animate_ftb').waypointSynchronise({
+		// 	container : '.products_container',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.products_container.a_type_2 .photoframe.animate_ftb').waypointSynchronise({
+		// 	container : '.products_container',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.wfilter_carousel .photoframe.animate_ftb').waypointSynchronise({
+		// 	container : '.wfilter_carousel',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.bestsellers_carousel .photoframe.animate_ftb').waypointSynchronise({
+		// 	container : '.bestsellers_carousel',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	globalDelay : 400,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.banner_type_2[class*="animate_ft"]').waypointSynchronise({
+		// 	container : '.row',
+		// 	delay : 200,
+		// 	offset : 800,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.animate_half_tc').waypointSynchronise({
+		// 	container : '.row',
+		// 	delay : 0,
+		// 	offset : 830,
+		// 	classN : "animate_horizontal_finished"
+		// });
+		// $('.heading2').waypointInit('animate_sj_finished animate_fade_finished','800px');
+		// $('.nav_buttons_wrap.animate_fade').waypointInit('animate_sj_finished animate_fade_finished','800px');
+		// $('.product_brands a.animate_fade').waypointSynchronise({
+		// 	container : '.product_brands',
+		// 	delay : 200,
+		// 	offset : 830,
+		// 	classN : "animate_sj_finished animate_fade_finished"
+		// });
+		// $('.blog_carousel a.photoframe').waypointSynchronise({
+		// 	container : '.blog_animate.animate_ftr',
+		// 	delay : 0,
+		// 	offset : 830,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.blog_carousel .mini_post_content > .animate_ftr').waypointSynchronise({
+		// 	container : '.blog_animate.animate_ftr',
+		// 	delay : 200,
+		// 	offset : 830,
+		// 	classN : "animate_horizontal_finished"
+		// });
+		// $('.blog_animate.animate_ftr').waypointInit('animate_horizontal_finished','800px');
+		// $('.ti_animate.animate_ftr').waypointInit('animate_horizontal_finished','800px',1000);
+		// $('.testiomials_carousel .animate_ftr:first').waypointInit('animate_horizontal_finished','851px',1200);
+		// $('.testiomials_carousel .animate_ftr:nth-child(2)').waypointInit('animate_horizontal_finished','973px',1400);
+		// $('.testiomials_carousel .animate_ftr:nth-child(3)').waypointInit('animate_horizontal_finished','987px',1600);
+		// $('.heading1.animate_ftr').waypointInit('animate_horizontal_finished','1000px');
+		// $('.isotope_menu > li.animate_ftr').waypointSynchronise({
+		// 	container : '.isotope_menu',
+		// 	delay : 200,
+		// 	offset : 1000,
+		// 	classN : "animate_horizontal_finished"
+		// });
+		// $('.flexslider.animate_ftr').waypointInit('animate_horizontal_finished','1000px');
+		// setTimeout(function(){
+		// 	$('.s_banners .d_block.animate_ftr').waypointSynchronise({
+		// 		container : '.s_banners',
+		// 		delay : 300,
+		// 		offset : 830,
+		// 		classN : "animate_horizontal_finished"
+		// 	});
+		// },200);
+		// $('.widget.animate_ftr').waypointInit('animate_horizontal_finished','800px',200);
+		// $('.heading5').waypointInit('animate_horizontal_finished','800px');
+		// $('.banner.animate_ftr').waypointSynchronise({
+		// 	container : '.row',
+		// 	delay : 200,
+		// 	offset : 1000,
+		// 	globalDelay : 800,
+		// 	classN : "animate_horizontal_finished"
+		// });
+		// $('.nc_carousel .photoframe.animate_ftb').waypointSynchronise({
+		// 	container : '.nc_carousel',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.info_blocks_container .animate_ftr').waypointSynchronise({
+		// 	container : '.info_blocks_container',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.our_recent_work_carousel .animate_ftb').waypointSynchronise({
+		// 	container : '.our_recent_work_carousel',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_vertical_finished"
+		// });
+		// $('.p_tables .animate_fade').waypointSynchronise({
+		// 	container : '.p_tables',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_fade_finished"
+		// });
+		// $('.animate_corporate_container .animate_fade').waypointSynchronise({
+		// 	container : '.animate_corporate_container',
+		// 	delay : 200,
+		// 	offset : 700,
+		// 	classN : "animate_fade_finished"
+		// });
 
 		// sticky menu
 
@@ -1383,7 +1383,7 @@ $('#shopping_button').on('mouseenter',function(){
 		})();
 
 		// flexslider
-		// 
+		//
 		// (function(){
 		// 	var flx = $('.flexslider:not(.simple_slide_show)');
 		// 	console.log('flex, ', flx);
