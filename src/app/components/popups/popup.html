@@ -1,5 +1,5 @@
 <div class="modal-body">
-	<button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+	<button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times" ng-click="cancel()"></i></button>
 	<div class="clearfix">
 		<div class="custom_scrollbar">
 			<!--left popup column-->
@@ -32,7 +32,7 @@
 					</tr>
 					<tr>
 						<td>Disponibilidade:</td>
-						<td><span class="color_green">em estoque</span> {{data.quantidade}}</td>
+						<td><span ng-class="{color_green: emEstoque, color_red: semEstoque}">{{data.estoque}}</span> <span ng-if="emEstoque">{{data.quantidade}}</span></td>
 					</tr>
 					<tr>
 						<td>Código do Produto:</td>

@@ -8,14 +8,30 @@ export default function productDirective($uibModal){
             data: '='
         },
         link: function(scope, element, attr) {
+        	var modalInstance;
+        	
         	scope.open = function (item) {
-			    var modalInstance = $uibModal.open({
+
+        		scope.emEstoque = scope.data.quantidade > 0
+        		scope.semEstoque = scope.data.quantidade === 0
+
+        		if(scope.emEstoque) {
+        			scope.data.estoque = 'em estoque'
+        		} else {
+        			scope.data.estoque = 'sem estoque'
+        		}
+
+			    modalInstance = $uibModal.open({
 			      animation: true,
 			      templateUrl: 'popup.html',
 			      size: 'lg',
 			      scope: scope
 			    })			    
 			}
+			scope.cancel = function () {
+			    modalInstance.dismiss('cancel');
+			};
         }
     };
+
 }

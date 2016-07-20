@@ -563,6 +563,9 @@ a:hover,.color_dark,.bc_list a[class*="color"]:hover,.bc_list > li.current > a,
 .color_green{
 	color:#27ae60;
 }
+.color_red{
+	color:#c0392b;
+}
 .bg_color_green_1{
 	background:#27ae60;
 }
