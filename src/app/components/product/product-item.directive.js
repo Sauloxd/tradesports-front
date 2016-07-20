@@ -1,6 +1,6 @@
 import '!ng-cache!./product-item.html';
 
-export default function productDirective(){
+export default function productDirective($uibModal){
     return {
         restrict: 'E',
         templateUrl: 'product-item.html', // markup for template
@@ -8,7 +8,14 @@ export default function productDirective(){
             data: '='
         },
         link: function(scope, element, attr) {
-
+        	scope.open = function (item) {
+			    var modalInstance = $uibModal.open({
+			      animation: true,
+			      templateUrl: 'popup.html',
+			      size: 'lg',
+			      scope: scope
+			    })			    
+			}
         }
     };
 }

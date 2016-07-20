@@ -1,0 +1,80 @@
+<div class="modal-body">
+	<button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+	<div class="clearfix">
+		<div class="custom_scrollbar">
+			<!--left popup column-->
+			<div class="f_left half_column">
+				<div class="relative d_inline_b m_bottom_10 qv_preview">
+					<img src="{{data.imagem}}" class="tr_all_hover" alt="" width="360">
+				</div>
+				<div class="d_inline_middle m_left_5">
+					<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+					<a class="addthis_button_preferred_1"></a>
+					<a class="addthis_button_preferred_2"></a>
+					<a class="addthis_button_preferred_3"></a>
+					<a class="addthis_button_preferred_4"></a>
+					<a class="addthis_button_compact"></a>
+					<a class="addthis_counter addthis_bubble_style"></a>
+					</div>
+					<!-- AddThis Button END -->
+				</div>
+			</div>
+			<!--right popup column-->
+			<div class="f_right half_column">
+				<!--description-->
+				<h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">{{data.nome}}</a></h2>
+				<hr class="m_bottom_10 divider_type_3">
+				<table class="description_table m_bottom_10">
+					<tr>
+						<td>Fabricante:</td>
+						<td><a href="#" class="color_dark">{{data.fabricante}}</a></td>
+					</tr>
+					<tr>
+						<td>Disponibilidade:</td>
+						<td><span class="color_green">em estoque</span> {{data.quantidade}}</td>
+					</tr>
+					<tr>
+						<td>Código do Produto:</td>
+						<td>{{data.idproduto}}</td>
+					</tr>
+				</table>
+				<table class="description_table m_bottom_5">
+					<tr>
+						<td>Peso do produto:</td>
+						<td>{{data.peso}} kg</td>
+					</tr>
+				</table>
+				<hr class="divider_type_3 m_bottom_10">
+				<p class="m_bottom_10">{{data.descricao}}</p>
+				<hr class="divider_type_3 m_bottom_15">
+				<div class="m_bottom_15">
+					<s class="v_align_b f_size_ex_large">R${{data.valor}}.00</s><span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">R${{data.valor}}.00</span>
+				</div>
+				<table class="description_table type_2 m_bottom_15">
+					<tr>
+						<td class="v_align_m">Tamanhos Disponíveis:</td>
+						<td class="v_align_m">
+							<div class="custom_select f_size_medium relative d_inline_middle">
+								<div class="select_title r_corners relative color_dark">{{data.tamanho}}</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="v_align_m">Quantidade:</td>
+						<td class="v_align_m">
+							<div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+								<button class="bg_tr d_block f_left" data-direction="down">-</button>
+								<input type="text" name="" readonly value="1" class="f_left">
+								<button class="bg_tr d_block f_left" data-direction="up">+</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div class="clearfix m_bottom_15">
+					<button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large">Àdicionar ao Carrinho</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

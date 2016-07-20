@@ -1,5 +1,6 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
+import uibootstrap from 'angular-ui-bootstrap'
 
 import crudService from '../../factories/crud.js';
 import constService from '../../factories/constants.js';
@@ -28,7 +29,7 @@ import 'imports?$=jquery!../../../js/flatastic.js';
 import routing from './home.routes';
 import homeController from './home.controller';
 import productDirective from '../../components/product/product-item.directive'
-export default angular.module('app.home', [uirouter, crudService])
+export default angular.module('app.home', [uirouter, crudService, uibootstrap])
   .config(routing)
   .controller('homeController', homeController)
   .directive('productItem', productDirective)
