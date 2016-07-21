@@ -7,6 +7,7 @@ import '!ng-cache!../../components/banner/slim-banner.html';
 import '!ng-cache!../../components/carousel/carousel.html';
 import '!ng-cache!../../components/footer/footer.html';
 import '!ng-cache!../../components/social-menu/social-menu.html';
+import '!ng-cache!../../components/popups/popup.html';
 import '!ng-cache!./home.html';
 
 export default function routes($stateProvider) {

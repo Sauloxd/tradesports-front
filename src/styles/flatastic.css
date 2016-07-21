@@ -563,6 +563,9 @@ a:hover,.color_dark,.bc_list a[class*="color"]:hover,.bc_list > li.current > a,
 .color_green{
 	color:#27ae60;
 }
+.color_red{
+	color:#c0392b;
+}
 .bg_color_green_1{
 	background:#27ae60;
 }
@@ -753,7 +756,7 @@ blockquote:after{
 .sub_menu_wrap{
 	position:absolute;
 	left:0;
-	width:780px;
+	width:600px;
 	background:#fff;
 	padding:10px 10px 0 0;
 	border-top-width:3px;

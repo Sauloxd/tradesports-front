@@ -1,4 +1,4 @@
-var homeController = function (crudService) {
+var homeController = function (crudService, $uibModal) {
   var vm = this;
   vm.teste = 'oi';
   crudService.get('produto')

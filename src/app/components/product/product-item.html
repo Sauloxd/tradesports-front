@@ -5,34 +5,11 @@
       <!--hot product-->
 
       <img src="{{data.imagem}}" class="tr_all_hover" alt="">
-      <span role="button" data-popup="#quick_view_product" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">Detalhes</span>
+      <span role="button" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none" ng-click="open(data)">Detalhes</span>
     </a>
     <!--description and price of product-->
     <figcaption>
       <h5 class="m_bottom_10"><a href="#" class="color_dark">{{data.nome}}</a></h5>
-      <!--rating-->
-      <ul class="horizontal_list d_inline_b m_bottom_10 clearfix rating_list type_2 tr_all_hover">
-        <li class="active">
-          <i class="fa fa-star-o empty tr_all_hover"></i>
-          <i class="fa fa-star active tr_all_hover"></i>
-        </li>
-        <li class="active">
-          <i class="fa fa-star-o empty tr_all_hover"></i>
-          <i class="fa fa-star active tr_all_hover"></i>
-        </li>
-        <li class="active">
-          <i class="fa fa-star-o empty tr_all_hover"></i>
-          <i class="fa fa-star active tr_all_hover"></i>
-        </li>
-        <li class="active">
-          <i class="fa fa-star-o empty tr_all_hover"></i>
-          <i class="fa fa-star active tr_all_hover"></i>
-        </li>
-        <li>
-          <i class="fa fa-star-o empty tr_all_hover"></i>
-          <i class="fa fa-star active tr_all_hover"></i>
-        </li>
-      </ul>
       <p class="scheme_color f_size_large m_bottom_15">R${{data.valor}}.00</p>
       <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0 m_bottom_15">Adicionar ao Carrinho</button>
       <!-- <div class="clearfix m_bottom_5">
