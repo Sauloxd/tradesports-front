@@ -234,6 +234,9 @@ body{
 .wrapper{
 	overflow: hidden;
 }
+.overflow_auto{
+	overflow: auto;
+}
 .ellipsis{
 	display:block;
 	overflow: hidden;
