@@ -7,6 +7,8 @@ var navbarCtrl = function (crudService, $uibModal) {
     var modalInstance = $uibModal.open({
       animation: true,
       templateUrl: 'login.html',
+      controller: 'loginCtrl',
+      controllerAs: 'login',
       size: 'md'
     });
   };
