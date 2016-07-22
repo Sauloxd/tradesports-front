@@ -25,7 +25,7 @@
 
 */
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:300,700,500,300italic);
+@import "fonts.css";
 @import "styleswitcher.css";
 
 /* -----------------------------------
@@ -233,6 +233,9 @@ body{
 }
 .wrapper{
 	overflow: hidden;
+}
+.overflow_auto{
+	overflow: auto;
 }
 .ellipsis{
 	display:block;
