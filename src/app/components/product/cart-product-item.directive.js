@@ -5,7 +5,13 @@ export default function cartDirective(){
         restrict: 'A',
         templateUrl: 'cart-product-item.html', // markup for template
         scope: {
-          data: '='
+          item: '=',
+          index: '=',
+          removeItem: '&',
+          updateQtd: '&'
+        },
+        link: function(scope, element) {
+          console.log('the index is :', scope.index);
         }
     };
 
