@@ -1,4 +1,5 @@
 import '!ng-cache!./product-item.html';
+import '!ng-cache!../modals/product-details.html';
 
 export default function productDirective($uibModal){
     return {
@@ -9,28 +10,28 @@ export default function productDirective($uibModal){
         },
         link: function(scope, element, attr) {
         	var modalInstance;
-        	
-        	scope.open = function (item) {
 
-        		scope.emEstoque = scope.data.quantidade > 0
-        		scope.semEstoque = scope.data.quantidade === 0
+          scope.open = function (item) {
 
-        		if(scope.emEstoque) {
-        			scope.data.estoque = 'em estoque'
-        		} else {
-        			scope.data.estoque = 'sem estoque'
-        		}
+          	scope.emEstoque = scope.data.quantidade > 0
+          	scope.semEstoque = scope.data.quantidade === 0
 
-			    modalInstance = $uibModal.open({
-			      animation: true,
-			      templateUrl: 'popup.html',
-			      size: 'lg',
-			      scope: scope
-			    })			    
-			}
-			scope.cancel = function () {
-			    modalInstance.dismiss('cancel');
-			};
+          	if(scope.emEstoque) {
+          		scope.data.estoque = 'em estoque'
+          	} else {
+          		scope.data.estoque = 'sem estoque'
+          	};
+
+            modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: 'product-details.html',
+              size: 'lg',
+              scope: scope
+            });
+          };
+          scope.cancel = function () {
+            modalInstance.dismiss('cancel');
+          };
         }
     };
 

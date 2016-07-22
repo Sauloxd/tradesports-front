@@ -1,4 +1,4 @@
-var homeController = function (crudService, $uibModal) {
+var homeController = function (crudService) {
   var vm = this;
 
   crudService.get('produto')
@@ -7,6 +7,7 @@ var homeController = function (crudService, $uibModal) {
     }, function(err) {
       console.log('error', err);
     });
+
 }
 
 export default homeController;
