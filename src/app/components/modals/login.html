@@ -13,6 +13,7 @@
 			</li>
 			<li class="m_bottom_15">
 				<input type="checkbox" class="d_none" id="checkbox_10"><label for="checkbox_10">Lembrar Senha</label>
+				<p class="f_right color_red" ng-if="login.error">Usuário e/ou Senha incorreta!</p>
 			</li>
 			<li class="clearfix m_bottom_30">
 				<button class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" ng-click="login.login()">Entrar</button>

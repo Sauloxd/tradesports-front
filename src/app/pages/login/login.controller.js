@@ -1,17 +1,19 @@
 var loginCtrl = function (crudService, authService, $state, $uibModalInstance) {
   var vm = this;
-
+  vm.error = false;
   vm.login = function() {
+    console.log('clicked');
+    console.log(vm.user, vm.password);
     authService.login(vm.user, vm.password, function (result) {
       console.log('result: ', result);
       if (result === true) {
           console.log('vai pro cart');
           $state.go('cart');
           $uibModalInstance.dismiss('cancel');
-      } else {
-          vm.error = '';
       }
+      vm.error = !result;
     });
+
   };
 
   vm.close = function() {

@@ -1,7 +1,12 @@
 import '!ng-cache!../modals/login.html';
 
-var navbarCtrl = function (crudService, $uibModal) {
+var navbarCtrl = function (crudService, $uibModal, $localStorage, authService) {
   var vm = this;
+  if(vm.isLogged = !!$localStorage.currentUser) {
+    vm.nome = $localStorage.currentUser.nome;
+  }
+
+  console.log('is logged? ', vm.isLogged);
 
   vm.openLogin = function () {
     var modalInstance = $uibModal.open({
@@ -11,6 +16,10 @@ var navbarCtrl = function (crudService, $uibModal) {
       controllerAs: 'login',
       size: 'md'
     });
+  };
+
+  vm.logout = function () {
+      authService.logout();
   };
 
 }
