@@ -11,7 +11,20 @@ export default function cartDirective(){
           updateQtd: '&'
         },
         link: function(scope, element) {
-          console.log('the index is :', scope.index);
+          //startup
+          scope.$emit('child', {
+            valor: scope.item.prod_valor * scope.item.cart_quantidade,
+            add: true
+          });
+
+          scope.$watch('item.cart_quantidade', function(newValue, oldValue) {
+            if (newValue != oldValue)
+              scope.$emit('child', {
+                valor: scope.item.prod_valor,
+                add: (newValue > oldValue)
+              }); // going up!
+
+          });
         }
     };
 
