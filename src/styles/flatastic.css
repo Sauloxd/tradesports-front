@@ -2743,7 +2743,10 @@ aside .addthis_widget_container{
 }
 .category_grid .product_item{
 	width:262px;
+	float: left;
 }
+/*TODO: THIS FLOAT probably wont do a nice responsive state*/
+
 .zoomLens{
 	display:none !important;
 }
