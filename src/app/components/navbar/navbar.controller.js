@@ -15,8 +15,6 @@ var navbarCtrl = function (crudService, $uibModal, $localStorage, authService) {
 
   }
 
-  console.log('is logged? ', vm.isLogged);
-
   vm.openLogin = function () {
     var modalInstance = $uibModal.open({
       animation: true,
