@@ -4355,3 +4355,7 @@ only screen and (min-resolution: 144 dpi){
   height: 10px;
   margin-top: 2px;
 }
+
+.product-item {
+	margin-bottom: 15px; 
+}
