@@ -13,6 +13,7 @@ import login from './pages/login/login.controller';
 import auth from './authentication';
 import navbarCtrl from './components/navbar/navbar.controller';
 
+import promocao from './factories/promocao';
 
 //Flatastic Imports
 
@@ -37,7 +38,7 @@ class AppCtrl {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, modal, ngStorage, home, cart, login, auth])
+angular.module(MODULE_NAME, [uirouter, modal, ngStorage, home, cart, login, auth, promocao])
   .config(routing)
   .controller('navbarCtrl', navbarCtrl)
   .controller('AppCtrl', AppCtrl);

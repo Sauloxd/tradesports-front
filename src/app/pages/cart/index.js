@@ -3,6 +3,7 @@ import uirouter from 'angular-ui-router';
 
 import crudService from '../../factories/crud.js';
 import constService from '../../factories/constants.js';
+import cartItemDirective from '../../components/product/cart-product-item.directive';
 
 import "font-awesome-webpack";
 import 'expose?jQuery!jquery/dist/jquery.min.js';
@@ -32,5 +33,11 @@ import routing from './cart.routes';
 import cartController from './cart.controller';
 export default angular.module('app.cart', [uirouter, crudService])
   .config(routing)
+  .directive('cartItem', cartItemDirective)
   .controller('cartController', cartController)
   .name; //Exporta o nome do modulo pra poder por na injecao de dependencia do angular
+
+
+//TODO: implement, onStateChange of cart, send a put to tdb carrinho to update models
+
+//TODO: maybe navbar can be a directive with single scope?
