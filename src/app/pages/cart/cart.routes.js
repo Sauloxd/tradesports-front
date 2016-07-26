@@ -5,8 +5,8 @@ import '!ng-cache!./cart-recently.html';
 
 export default function routes($stateProvider) {
   $stateProvider
-    .state('cart', {
-      url: '/cart',
+    .state('carrinho', {
+      url: '/carrinho',
       templateUrl: 'cart.html',
       controller: 'cartController',
       controllerAs: 'cart'

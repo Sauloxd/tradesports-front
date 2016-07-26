@@ -10,10 +10,10 @@ export default function productDirective($uibModal, crudService, $localStorage){
         },
         link: function(scope, element, attr) {
         	var modalInstance;
+          var insertIntoCart = {};
           scope.cart_quantidade = 1;
-          scope.open = function (item) {
 
-            var insertIntoCart = {};
+          scope.open = function (item) {
           	scope.emEstoque = scope.data.quantidade > 0
           	scope.semEstoque = scope.data.quantidade === 0
 
@@ -30,21 +30,30 @@ export default function productDirective($uibModal, crudService, $localStorage){
               scope: scope
             });
 
-            scope.updateQtd = function(qtd) {
-              if (scope.cart_quantidade == '0' && qtd === -1) return;
-              scope.cart_quantidade = qtd + parseInt(scope.cart_quantidade);
-            };
-
-            scope.putInCart = function(){
-              insertIntoCart = {
-                  id_produto: scope.data.idproduto,
-                  quantidade: scope.cart_quantidade
-              };
-              crudService.update('carrinho', $localStorage.currentUser.cpf_id, insertIntoCart);
-            }
-
           };
-          
+
+          scope.updateQtd = function(qtd) {
+            if (scope.cart_quantidade == '0' && qtd === -1) return;
+            scope.cart_quantidade = qtd + parseInt(scope.cart_quantidade);
+          };
+
+          scope.putInCart = function(){
+            if($localStorage.currentUser) {
+              insertIntoCart = {
+                CPF: $localStorage.currentUser.cpf_id,
+                id_produto: scope.data.idproduto,
+                quantidade: scope.cart_quantidade
+            };
+            crudService.post('carrinho', insertIntoCart).then((response)=>{
+              alert('sucesso! ', response);
+            }, (err)=>{
+              console.log('err', err);
+            });
+          }else {
+            alert('loga ae parça');
+          }
+          }
+
           scope.cancel = function () {
             modalInstance.dismiss('cancel');
           };

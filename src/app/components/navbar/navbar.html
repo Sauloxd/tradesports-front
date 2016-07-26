@@ -101,10 +101,10 @@
       <ul class="f_right horizontal_list clearfix t_align_l t_xs_align_c site_settings d_xs_inline_b f_xs_none">
         <!--shopping cart-->
         <li class="m_left_5 relative container3d" id="shopping_button">
-          <a role="button" href="#" class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none">
+          <a role="button" ui-sref='carrinho' class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none">
             <span class="d_inline_middle shop_icon">
               <i class="fa fa-shopping-cart"></i>
-              <span class="count tr_delay_hover type_2 circle t_align_c">{{nav.cart.qtd}}</span>
+              <span class="count tr_delay_hover type_2 circle t_align_c" >{{nav.cart.qtd || 0}} </span>
             </span>
             <b>$355</b>
           </a>
