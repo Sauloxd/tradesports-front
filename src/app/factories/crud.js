@@ -8,7 +8,7 @@ var crudService = function ($http, $q) {
     return $http
       .post(TSConfig.urlBase + table, formData)
       .then(function(response){
-        return;
+        return response;
       },function(response){
           return $q.reject(response.data);
     });
