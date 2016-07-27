@@ -59,6 +59,23 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   function updateTotal() {
     vm.total = (vm.subtotal - (vm.subtotal * vm.promocao /100) + vm.frete.price).toFixed(2);
   };
+
+  vm.mockCheckout = function() {
+
+    var data = {}
+    data.cpf_cliente = $localStorage.currentUser.cpf_id
+    data.valor = vm.total
+    data.metodo_de_pagamento = 'cartao'
+    data.imagemNF = 'imagem da nota'
+    data.notaFiscal = 'nota'
+    data.estado = 'legal'
+
+    crudService.post('compra', data).then(function(response) {
+      console.log(response)
+    }, function(err) {
+      console.log('error', err);
+    });
+  }
 }
 
 export default cartController;
