@@ -3,6 +3,7 @@ import uirouter from 'angular-ui-router';
 
 import crudService from '../../factories/crud.js';
 import constService from '../../factories/constants.js';
+import cartService from './cart.factory';
 import cartItemDirective from '../../components/product/cart-product-item.directive';
 
 import "font-awesome-webpack";
@@ -34,6 +35,7 @@ import cartController from './cart.controller';
 export default angular.module('app.cart', [uirouter, crudService])
   .config(routing)
   .directive('cartItem', cartItemDirective)
+  .factory('cartService', cartService)
   .controller('cartController', cartController)
   .name; //Exporta o nome do modulo pra poder por na injecao de dependencia do angular
 
