@@ -40,8 +40,8 @@ export default function productDirective($uibModal, crudService, $localStorage){
           scope.putInCart = function(){
             if($localStorage.currentUser) {
               insertIntoCart = {
-                CPF: $localStorage.currentUser.cpf_id,
-                id_produto: scope.data.idproduto,
+                cpf: $localStorage.currentUser.cpf_id,
+                idProduto: scope.data.idproduto,
                 quantidade: scope.cart_quantidade
             };
             crudService.post('carrinho', insertIntoCart).then((response)=>{
