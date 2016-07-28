@@ -3,7 +3,7 @@ import '!ng-cache!../modals/product-details.html';
 import cs from 'imports?$=jquery!../custom-jquery-components/custom-select';
 
 
-export default function productDirective($uibModal, crudService, $localStorage, prodConstants, $timeout){
+export default function productDirective($uibModal, crudService, $localStorage, prodConstants, $timeout, cartService){
     return {
         restrict: 'E',
         templateUrl: 'product-item.html', // markup for template
@@ -13,7 +13,9 @@ export default function productDirective($uibModal, crudService, $localStorage, 
         link: function(scope, element, attr) {
         	var modalInstance;
           var insertIntoCart = {};
+          //default values to send to cart
           scope.cart_quantidade = 1;
+          scope.tamanho = prodConstants.tamanhos[0];
           scope.tamanhosDisponiveis = prodConstants.tamanhos;
 
           scope.open = function (item) {
@@ -41,16 +43,19 @@ export default function productDirective($uibModal, crudService, $localStorage, 
           scope.putInCart = function(){
             if($localStorage.currentUser) {
               insertIntoCart = {
-                cpf: $localStorage.currentUser.cpf_id,
-                idProduto: scope.data.idproduto,
-                quantidade: scope.cart_quantidade,
-                quantidade: scope.cart_quantidade,
-            };
-            crudService.post('carrinho', insertIntoCart).then((response)=>{
-              alert('sucesso! ', response);
-            }, (err)=>{
-              console.log('err', err);
-            });
+                cpf_cliente: $localStorage.currentUser.cpf_id,
+                item: [{
+                  idProduto: scope.data.idproduto,
+                  quantidade: scope.cart_quantidade,
+                  tamanho: scope.tamanho
+                }]
+              };
+              console.log('being inserted: ', insertIntoCart);
+              crudService.post('carrinho', insertIntoCart).then((response)=>{
+                cartService.update();
+              }, (err)=>{
+                console.log('err', err);
+              });
             }else {
               //TODO: offline cart!
               alert('loga ae parça');

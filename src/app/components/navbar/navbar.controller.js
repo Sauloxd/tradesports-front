@@ -5,14 +5,7 @@ var navbarCtrl = function (crudService, $uibModal, $localStorage, authService) {
   vm.cart = {};
   if(vm.isLogged = !!$localStorage.currentUser) {
     vm.nome = $localStorage.currentUser.nome;
-    crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
-      .then(function(response){
-        vm.cart.qtd = response.data.length;
-
-      }, function(err) {
-        console.log('error', err);
-      });
-
+    vm.cart.qtd = $localStorage.currentUser.cart.length || 0; //TODO: ou usuario anonimo
   }
 
   vm.openLogin = function () {

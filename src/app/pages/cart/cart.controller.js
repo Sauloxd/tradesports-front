@@ -21,7 +21,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   vm.products = [];
   //TODO: implement for offline cart!!!!
   console.log('carrinho: ', currentUser.cart);
-  vm.products = currentUser.cart;
+  vm.products = currentUser.cart.items;
   crudService.get('promocoes')
     .then(function(response){
       //TODO: Ta meio burro isso mas eu to bebado
@@ -122,29 +122,28 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   }
 
   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-    if(fromState.name === 'carrinho'){
-      if(currentUser.cart) {
-        var formData = {};
-        formData.item = [];
-        vm.products.forEach((item)=>{
-          formData.item.push({
-            item_qtd: item.cart_quantidade,
-            item_id: item.prod_idproduto,
-            item_size: item.prod_tamanho
-          });
-        });
-        console.log('vm.products: ', vm.products);
-        formData.cpf_cliente = currentUser.cpf_id;
-        console.log('formData:', formData);
-        crudService.post('carrinho', formData).then(
-          (response)=>{
-            console.log('oioio');
-          alert('sucesso! ', response);
-        }, (err)=>{
-          console.log('err', err);
-        });
-      }
-      }
+    // if(fromState.name === 'carrinho'){
+    //   if(currentUser.cart) {
+    //     var formData = {};
+    //     formData.item = [];
+    //     vm.products.forEach((item)=>{
+    //       formData.item.push({
+    //         item_qtd: item.cart_quantidade,
+    //         item_id: item.prod_idproduto,
+    //         item_size: item.prod_tamanho
+    //       });
+    //     });
+    //     console.log('vm.products: ', vm.products);
+    //     formData.cpf_cliente = currentUser.cpf_id;
+    //     console.log('formData:', formData);
+    //     crudService.post('carrinho', formData).then(
+    //       (response)=>{
+    //       alert('sucesso! ', response);
+    //     }, (err)=>{
+    //       console.log('err', err);
+    //     });
+    //   }
+    // }
 
   });
 
