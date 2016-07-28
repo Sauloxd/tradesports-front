@@ -1,7 +1,9 @@
 import '!ng-cache!./product-item.html';
 import '!ng-cache!../modals/product-details.html';
+import cs from 'imports?$=jquery!../custom-jquery-components/custom-select';
 
-export default function productDirective($uibModal, crudService, $localStorage){
+
+export default function productDirective($uibModal, crudService, $localStorage, prodConstants, $timeout){
     return {
         restrict: 'E',
         templateUrl: 'product-item.html', // markup for template
@@ -12,6 +14,7 @@ export default function productDirective($uibModal, crudService, $localStorage){
         	var modalInstance;
           var insertIntoCart = {};
           scope.cart_quantidade = 1;
+          scope.tamanhosDisponiveis = prodConstants.tamanhos;
 
           scope.open = function (item) {
           	scope.emEstoque = scope.data.quantidade > 0
@@ -22,14 +25,12 @@ export default function productDirective($uibModal, crudService, $localStorage){
           	} else {
           		scope.data.estoque = 'sem estoque'
           	};
-
             modalInstance = $uibModal.open({
               animation: true,
               templateUrl: 'product-details.html',
               size: 'lg',
               scope: scope
-            });
-
+            }).opened.then(()=>{$timeout(()=>{cs();}, 0)});
           };
 
           scope.updateQtd = function(qtd) {
@@ -42,16 +43,18 @@ export default function productDirective($uibModal, crudService, $localStorage){
               insertIntoCart = {
                 cpf: $localStorage.currentUser.cpf_id,
                 idProduto: scope.data.idproduto,
-                quantidade: scope.cart_quantidade
+                quantidade: scope.cart_quantidade,
+                quantidade: scope.cart_quantidade,
             };
             crudService.post('carrinho', insertIntoCart).then((response)=>{
               alert('sucesso! ', response);
             }, (err)=>{
               console.log('err', err);
             });
-          }else {
-            alert('loga ae parça');
-          }
+            }else {
+              //TODO: offline cart!
+              alert('loga ae parça');
+            }
           }
 
           scope.cancel = function () {

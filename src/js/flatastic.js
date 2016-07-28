@@ -753,7 +753,7 @@ $('#shopping_button').on('mouseenter',function(){
 	// custom select
 
 	(function(){
-
+		console.log('custom select!')
 		$('.custom_select').each(function(){
 			var list = $(this).children('ul'),
 				select = $(this).find('select'),

@@ -49,14 +49,18 @@
 				<p class="m_bottom_10">{{data.descricao}}</p>
 				<hr class="divider_type_3 m_bottom_15">
 				<div class="m_bottom_15">
-					<s class="v_align_b f_size_ex_large">R${{data.valor}}.00</s><span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">R${{data.valor}}.00</span>
+					<span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">R${{data.valor}}.00</span>
 				</div>
 				<table class="description_table type_2 m_bottom_15">
 					<tr>
 						<td class="v_align_m">Tamanhos Disponíveis:</td>
 						<td class="v_align_m">
 							<div class="custom_select f_size_medium relative d_inline_middle">
-								<div class="select_title r_corners relative color_dark">{{data.tamanho}}</div>
+								<div class="select_title r_corners relative color_dark">{{tamanhosDisponiveis[0]}}</div>
+								<ul class="select_list d_none"></ul>
+								<select name="product_name" ng-model="tamanho">
+									<option ng-repeat="tamanho in tamanhosDisponiveis">{{tamanho}}</option>
+								</select>
 							</div>
 						</td>
 					</tr>

@@ -1,5 +1,14 @@
 var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope) {
+  console.log('the current user is: ', $localStorage.currentUser);
+
   var currentUser = $localStorage.currentUser;
+
+  //TODO: REMOVE THIS :
+  if(!currentUser){
+    alert('loga ae parça!');
+    $state.go('home');
+    var currentUser = {};
+  }
 
   //Sadly the events in $scope are not in this;
   var vm = this;
@@ -114,27 +123,29 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
 
   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
     if(fromState.name === 'carrinho'){
-      console.log('wtf');
-      var formData = {};
-      formData.item = [];
-      vm.products.forEach((item)=>{
-        formData.item.push({
-          item_qtd: item.cart_quantidade,
-          item_id: item.prod_idproduto,
-          item_size: item.prod_tamanho
+      if(currentUser.cart) {
+        var formData = {};
+        formData.item = [];
+        vm.products.forEach((item)=>{
+          formData.item.push({
+            item_qtd: item.cart_quantidade,
+            item_id: item.prod_idproduto,
+            item_size: item.prod_tamanho
+          });
         });
-      });
-      console.log('vm.products: ', vm.products);
-      formData.cpf_cliente = currentUser.cpf_id;
-      console.log('formData:', formData);
-      crudService.post('carrinho', formData).then(
-        (response)=>{
-          console.log('oioio');
-        alert('sucesso! ', response);
-      }, (err)=>{
-        console.log('err', err);
-      });
-    }
+        console.log('vm.products: ', vm.products);
+        formData.cpf_cliente = currentUser.cpf_id;
+        console.log('formData:', formData);
+        crudService.post('carrinho', formData).then(
+          (response)=>{
+            console.log('oioio');
+          alert('sucesso! ', response);
+        }, (err)=>{
+          console.log('err', err);
+        });
+      }
+      }
+
   });
 
 }
