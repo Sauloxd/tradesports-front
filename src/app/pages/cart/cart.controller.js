@@ -12,6 +12,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
     .then(function(response){
       vm.products = response.data;
+      console.log(vm.products)
       crudService.get('promocoes')
         .then(function(response){
           //TODO: Ta meio burro isso mas eu to bebado
@@ -71,7 +72,43 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
     data.estado = 'legal'
 
     crudService.post('compra', data).then(function(response) {
-      console.log(response)
+      var idCompra = response.data[0].idcompra
+
+      var dataent = {}
+      dataent.idCompra = idCompra
+      dataent.prazo = new Date()
+
+      crudService.post('entrega', dataent).then(function(res) {
+        var idEntrega = res.data[0].identrega
+
+        for(var i = 0; i < vm.products.length; i++) {
+
+          var datapc = {}
+          datapc.idCompra = idCompra
+          datapc.idProduto = vm.products[i].prod_idproduto
+          datapc.quantidade = vm.products[i].cart_quantidade
+
+          if(parseInt(datapc.quantidade) <= vm.products[i].prod_quantidade) {
+            datapc.idEntrega = idEntrega
+
+            var dataprod = {}
+            dataprod.valor = vm.products[i].prod_valor
+            dataprod.nome = vm.products[i].prod_nome
+            dataprod.imagem = vm.products[i].prod_imagem
+            dataprod.descricao = vm.products[i].prod_description
+            dataprod.peso = vm.products[i].prod_peso
+            dataprod.tamanho = vm.products[i].prod_tamanho
+            dataprod.fabricante = vm.products[i].prod_fabricante
+            dataprod.tipo = vm.products[i].prod_tipo
+            dataprod.quantidade = vm.products[i].prod_quantidade - datapc.quantidade
+
+            crudService.update('produto', vm.products[i].prod_idproduto, dataprod)
+          }
+
+          crudService.post('produtoCompra', datapc)
+        } 
+      })
+
     }, function(err) {
       console.log('error', err);
     });
