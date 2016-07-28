@@ -1,4 +1,6 @@
-var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope, cartService) {
+var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope) {
+  var currentUser = $localStorage.currentUser;
+
   //Sadly the events in $scope are not in this;
   var vm = this;
   vm.frete = {};
@@ -6,61 +8,29 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   //Get from API dos correios. E ai? calcular esse e dps ver as promocoes?
   vm.frete.price = 20.15;
   vm.promocao = 0;
-
   vm.subtotal = 0;
+  vm.products = [];
   //TODO: implement for offline cart!!!!
-<<<<<<< Updated upstream
-  crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
+  console.log('carrinho: ', currentUser.cart);
+  vm.products = currentUser.cart;
+  crudService.get('promocoes')
     .then(function(response){
-      vm.products = response.data;
-      console.log(vm.products)
-      crudService.get('promocoes')
-        .then(function(response){
-          //TODO: Ta meio burro isso mas eu to bebado
-          response.data.forEach((promocao) => {
-            if(promocao.tipo == 0) {
-              vm.promocao = promocaoService.produto[0];
-            }else if(promocao.tipo == 1) {
-              vm.promocao = promocaoService.produto[1];
-            }else {
-              vm.freteGratis = promocaoService.produto[2];
-            };
-          });
-          updateTotal();
+      //TODO: Ta meio burro isso mas eu to bebado
+      response.data.forEach((promocao) => {
+        if(promocao.tipo == 0) {
+          vm.promocao = promocaoService.produto[0];
+        }else if(promocao.tipo == 1) {
+          vm.promocao = promocaoService.produto[1];
+        }else {
+          vm.freteGratis = promocaoService.produto[2];
+        };
+      });
+      updateTotal();
 
-        }, function(err) {
-          console.log('error', err);
-        });
     }, function(err) {
       console.log('error', err);
     });
-=======
-  console.log('this is', cartService.getItems());
-  console.log(cartService.getItems());
-  // crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
-  //   .then(function(response){
-  //     vm.products = response.data;
-  //     crudService.get('promocoes')
-  //       .then(function(response){
-  //         //TODO: Ta meio burro isso mas eu to bebado
-  //         response.data.forEach((promocao) => {
-  //           if(promocao.tipo == 0) {
-  //             vm.promocao = promocaoService.produto[0];
-  //           }else if(promocao.tipo == 1) {
-  //             vm.promocao = promocaoService.produto[1];
-  //           }else {
-  //             vm.freteGratis = promocaoService.produto[2];
-  //           };
-  //         });
-  //         updateTotal();
-  //
-  //       }, function(err) {
-  //         console.log('error', err);
-  //       });
-  //   }, function(err) {
-  //     console.log('error', err);
-  //   });
->>>>>>> Stashed changes
+
 
   vm.removeItem = function(index){
     vm.subtotal = (parseFloat(vm.subtotal) - (
@@ -89,11 +59,10 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
     vm.total = (vm.subtotal - (vm.subtotal * vm.promocao /100) + vm.frete.price).toFixed(2);
   };
 
-<<<<<<< Updated upstream
   vm.mockCheckout = function() {
 
     var data = {}
-    data.cpf_cliente = $localStorage.currentUser.cpf_id
+    data.cpf_cliente = currentUser.cpf_id
     data.valor = vm.total
     data.metodo_de_pagamento = 'cartao'
     data.imagemNF = 'imagem da nota'
@@ -135,17 +104,17 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
           }
 
           crudService.post('produtoCompra', datapc)
-        } 
+        }
       })
 
     }, function(err) {
       console.log('error', err);
     });
   }
-=======
 
   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
     if(fromState.name === 'carrinho'){
+      console.log('wtf');
       var formData = {};
       formData.item = [];
       vm.products.forEach((item)=>{
@@ -156,7 +125,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
         });
       });
       console.log('vm.products: ', vm.products);
-      formData.cpf_cliente = $localStorage.currentUser.cpf_id;
+      formData.cpf_cliente = currentUser.cpf_id;
       console.log('formData:', formData);
       crudService.post('carrinho', formData).then(
         (response)=>{
@@ -168,7 +137,6 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
     }
   });
 
->>>>>>> Stashed changes
 }
 
 export default cartController;

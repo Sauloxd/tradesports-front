@@ -15,9 +15,12 @@ function authService($http, $localStorage, $state, cartService) {
           $http.defaults.headers.common.Authorization = response.data.token;
 
           // execute callback with true to indicate successful login
-          cartService.init();
-          console.log('iniciei o cart');
-          callback(true);
+          cartService.init().then(()=>{
+            //TODO: if offline, update the currentUser cart to the offline one
+            $localStorage.currentUser.cart = cartService.getItems();
+            console.log('iniciei o cart');
+            callback(true);
+          });
         }
       }, function(err) {
         console.log('err', err);

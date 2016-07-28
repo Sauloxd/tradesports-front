@@ -34,8 +34,8 @@ import routing from './cart.routes';
 import cartController from './cart.controller';
 export default angular.module('app.cart', [uirouter, crudService])
   .config(routing)
-  .directive('cartItem', cartItemDirective)
   .factory('cartService', cartService)
+  .directive('cartItem', cartItemDirective)
   .controller('cartController', cartController)
   .name; //Exporta o nome do modulo pra poder por na injecao de dependencia do angular
 
