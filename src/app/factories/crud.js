@@ -24,14 +24,26 @@ var crudService = function ($http, $q) {
       .get(TSConfig.urlBase + table + "/" + searchId)
   }
 
-  crud.delete = function(table, id){
-    return $http
-      .delete(TSConfig.urlBase + table + "/" + id)
-      .then(function(response){
-        return;
-      },function(response){
-            return $q.reject(response.data);
-      });
+  crud.delete = function(table, id, options){
+    if (options){
+      console.log(TSConfig.urlBase + table + "/" + id + "/" + options.cart.id_produto);
+      return $http
+        .delete(TSConfig.urlBase + table + "/" + id + "/" + options.cart.id_produto)
+        .then(function(response){
+          return;
+        },function(response){
+              return $q.reject(response.data);
+        });
+    }else {
+      return $http
+        .delete(TSConfig.urlBase + table + "/" + id)
+        .then(function(response){
+          return;
+        },function(response){
+              return $q.reject(response.data);
+        });
+    }
+
   }
 
   crud.update = function(table, id, formData){

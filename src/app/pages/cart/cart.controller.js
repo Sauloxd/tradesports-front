@@ -1,4 +1,4 @@
-var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope) {
+var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope, cartService) {
   console.log('the current user is: ', $localStorage.currentUser);
 
   var currentUser = $localStorage.currentUser;
@@ -42,6 +42,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
 
 
   vm.removeItem = function(index){
+    cartService.removeItem(vm.products[index].prod_idproduto);
     vm.subtotal = (parseFloat(vm.subtotal) - (
       vm.products[index].cart_quantidade * vm.products[index].prod_valor
     )).toFixed(2);

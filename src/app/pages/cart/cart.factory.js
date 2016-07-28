@@ -23,6 +23,25 @@ function cartService($http, crudService, $localStorage, $q) {
           console.log('Failed to init Cart', err);
         });
     },
+    removeItem: function(id_produto){
+      return crudService.delete('carrinho', $localStorage.currentUser.cpf_id, {cart: {id_produto: id_produto}})
+        .then(function(){
+          console.log('deleted with succ');
+          crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
+            .then(function(response){
+              if($localStorage.currentUser) {
+                vm.cart.items = response.data;
+                $localStorage.currentUser.cart = vm.cart;
+              }
+            }, function(err) {
+              $q.reject(response.data);
+              console.log('Failed to update Cart', err);
+            });
+        }, function(err) {
+          $q.reject(response.data);
+          console.log('Failed to delete prod:'+ id_produto + err);
+        });
+    },
     update: function() {
       console.log('update cart');
       return crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
