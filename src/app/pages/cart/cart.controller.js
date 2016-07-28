@@ -104,7 +104,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
             dataprod.imagem = vm.products[i].prod_imagem
             dataprod.descricao = vm.products[i].prod_description
             dataprod.peso = vm.products[i].prod_peso
-            dataprod.tamanho = vm.products[i].prod_tamanho
+            dataprod.tamanho = vm.products[i].cart_tamanho
             dataprod.fabricante = vm.products[i].prod_fabricante
             dataprod.tipo = vm.products[i].prod_tipo
             dataprod.quantidade = vm.products[i].prod_quantidade - datapc.quantidade
@@ -122,28 +122,30 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   }
 
   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-    // if(fromState.name === 'carrinho'){
-    //   if(currentUser.cart) {
-    //     var formData = {};
-    //     formData.item = [];
-    //     vm.products.forEach((item)=>{
-    //       formData.item.push({
-    //         item_qtd: item.cart_quantidade,
-    //         item_id: item.prod_idproduto,
-    //         item_size: item.prod_tamanho
-    //       });
-    //     });
-    //     console.log('vm.products: ', vm.products);
-    //     formData.cpf_cliente = currentUser.cpf_id;
-    //     console.log('formData:', formData);
-    //     crudService.post('carrinho', formData).then(
-    //       (response)=>{
-    //       alert('sucesso! ', response);
-    //     }, (err)=>{
-    //       console.log('err', err);
-    //     });
-    //   }
-    // }
+    if(fromState.name === 'carrinho'){
+      if(currentUser.cart) {
+        var formData = {};
+        formData.item = [];
+        vm.products.forEach((item)=>{
+          formData.item.push({
+            quantidade: item.cart_quantidade,
+            idProduto: item.prod_idproduto,
+            tamanho: item.cart_tamanho
+          });
+        });
+        console.log('vm.products: ', vm.products);
+        formData.cpf_cliente = currentUser.cpf_id;
+        console.log('formData:', formData);
+        crudService.post('carrinho', formData).then(
+          (response)=>{
+          alert('sucesso! ', response);
+        }, (err)=>{
+          console.log('err', err);
+        });
+      }else {
+        console.log('loga ae parça');
+      }
+    }
 
   });
 

@@ -17,17 +17,20 @@ function cartService($http, crudService, $localStorage, $q) {
         .then(function(response){
           $localStorage.currentUser.cart = vm.cart;
           vm.cart.items = response.data;
+          console.log('vm.cart.items', vm.cart.items);
         }, function(err) {
           $q.reject(response.data);
           console.log('Failed to init Cart', err);
         });
     },
     update: function() {
+      console.log('update cart');
       return crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
         .then(function(response){
           if($localStorage.currentUser) {
             vm.cart.items = response.data;
             $localStorage.currentUser.cart = vm.cart;
+            console.log('my cart: ', vm.cart.items);
           }
         }, function(err) {
           $q.reject(response.data);
