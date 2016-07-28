@@ -15,7 +15,7 @@ export default function productDirective($uibModal, crudService, $localStorage, 
           var insertIntoCart = {};
           //default values to send to cart
           scope.cart_quantidade = 1;
-          scope.tamanho = prodConstants.tamanhos[0];
+          scope.cart_tamanho = prodConstants.tamanhos[0];
           scope.tamanhosDisponiveis = prodConstants.tamanhos;
 
           scope.open = function (item) {
@@ -41,16 +41,20 @@ export default function productDirective($uibModal, crudService, $localStorage, 
           };
 
           scope.putInCart = function(){
+            var cs = document.querySelector('#cart_tamanho')
+            if (cs) {
+              scope.cart_tamanho = parseInt(angular.element(cs).val());
+            }
             if($localStorage.currentUser) {
               insertIntoCart = {
                 cpf_cliente: $localStorage.currentUser.cpf_id,
                 item: [{
                   idProduto: scope.data.idproduto,
                   quantidade: scope.cart_quantidade,
-                  tamanho: scope.tamanho
+                  tamanho: scope.cart_tamanho
                 }]
               };
-              console.log('being inserted: ', insertIntoCart);
+              console.log('being inserted: ', insertIntoCart.item);
               crudService.post('carrinho', insertIntoCart).then((response)=>{
                 cartService.update();
               }, (err)=>{
