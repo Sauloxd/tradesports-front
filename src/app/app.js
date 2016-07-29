@@ -14,33 +14,19 @@ import auth from './authentication';
 import navbarCtrl from './components/navbar/navbar.controller';
 
 import promocao from './factories/promocao';
+import prodConstants from './factories/prodConstants';
 
 //Flatastic Imports
 
-
-//Template Cache
-
-
-// let app = () => {
-//   return {
-//     template: require('./app.html'),
-//     controller: 'AppCtrl',
-//     controllerAs: 'app'
-//   }
-// };
-console.log('carregou ctrl');
-class AppCtrl {
-  constructor() {
-    this.url = 'https://github.com/preboot/angular-webpack';
-    console.log('carregou ctrl');
-  }
+function initAnonyCart($localStorage) {
+  $localStorage.anonyCart = [];
 }
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, modal, ngStorage, home, cart, login, auth, promocao])
+angular.module(MODULE_NAME, [uirouter, modal, ngStorage, home, cart, login, auth, promocao, prodConstants])
   .config(routing)
-  .controller('navbarCtrl', navbarCtrl)
-  .controller('AppCtrl', AppCtrl);
+  .controller('initAnonyCart', initAnonyCart)
+  .controller('navbarCtrl', navbarCtrl);
 
 export default MODULE_NAME;

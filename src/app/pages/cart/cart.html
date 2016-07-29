@@ -53,7 +53,7 @@
 									<p class="fw_medium f_size_large t_align_r t_xs_align_c"><span ng-if="!cart.promocao">Não Há </span>Promoção <span ng-if="cart.promocao"> de {{cart.promocao}}%</span>: </p>
 								</td>
 								<td colspan="1">
-									<p class="fw_medium f_size_large color_dark">- R${{cart.total*cart.promocao/100}}</p>
+									<p class="fw_medium f_size_large color_dark">- R${{cart.total*cart.promocao/100 || 0}}</p>
 								</td>
 							</tr>
 

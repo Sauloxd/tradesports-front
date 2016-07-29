@@ -1,40 +1,39 @@
-var cartController = function (crudService, $localStorage, $scope, promocaoService) {
-  //Sadly the events in $scope are not in this;
+var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope, cartService) {
   var vm = this;
   vm.frete = {};
   vm.frete.isFree = false;
   //Get from API dos correios. E ai? calcular esse e dps ver as promocoes?
   vm.frete.price = 20.15;
   vm.promocao = 0;
-
   vm.subtotal = 0;
-  //TODO: implement for offline cart!!!!
-  crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
-    .then(function(response){
-      vm.products = response.data;
-      console.log(vm.products)
-      crudService.get('promocoes')
-        .then(function(response){
-          //TODO: Ta meio burro isso mas eu to bebado
-          response.data.forEach((promocao) => {
-            if(promocao.tipo == 0) {
-              vm.promocao = promocaoService.produto[0];
-            }else if(promocao.tipo == 1) {
-              vm.promocao = promocaoService.produto[1];
-            }else {
-              vm.freteGratis = promocaoService.produto[2];
-            };
-          });
-          updateTotal();
+  vm.products = [];
 
-        }, function(err) {
-          console.log('error', err);
-        });
+  if ($localStorage.currentUser) {
+    vm.products = $localStorage.currentUser.cart.items;
+  } else {
+    vm.products = $localStorage.anonyCart;
+  }
+
+  crudService.get('promocoes')
+    .then(function(response){
+      response.data.forEach((promocao) => {
+        if(promocao.tipo == 0) {
+          vm.promocao = promocaoService.produto[0];
+        }else if(promocao.tipo == 1) {
+          vm.promocao = promocaoService.produto[1];
+        }else {
+          vm.freteGratis = promocaoService.produto[2];
+        };
+      });
+      updateTotal();
+
     }, function(err) {
       console.log('error', err);
     });
 
+
   vm.removeItem = function(index){
+    cartService.removeItem(vm.products[index].prod_idproduto);
     vm.subtotal = (parseFloat(vm.subtotal) - (
       vm.products[index].cart_quantidade * vm.products[index].prod_valor
     )).toFixed(2);
@@ -64,7 +63,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   vm.mockCheckout = function() {
 
     var data = {}
-    data.cpf_cliente = $localStorage.currentUser.cpf_id
+    data.cpf_cliente = currentUser.cpf_id
     data.valor = vm.total
     data.metodo_de_pagamento = 'cartao'
     data.imagemNF = 'imagem da nota'
@@ -97,7 +96,7 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
             dataprod.imagem = vm.products[i].prod_imagem
             dataprod.descricao = vm.products[i].prod_description
             dataprod.peso = vm.products[i].prod_peso
-            dataprod.tamanho = vm.products[i].prod_tamanho
+            dataprod.tamanho = vm.products[i].cart_tamanho
             dataprod.fabricante = vm.products[i].prod_fabricante
             dataprod.tipo = vm.products[i].prod_tipo
             dataprod.quantidade = vm.products[i].prod_quantidade - datapc.quantidade
@@ -106,13 +105,44 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
           }
 
           crudService.post('produtoCompra', datapc)
-        } 
+        }
       })
 
     }, function(err) {
       console.log('error', err);
     });
   }
+
+  $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    if(fromState.name === 'carrinho'){
+      if(vm.products[0]) {
+        if($localStorage.currentUser){
+          var formData = {};
+          formData.item = [];
+          vm.products.forEach((item)=>{
+            formData.item.push({
+              quantidade: item.cart_quantidade,
+              idProduto: item.prod_idproduto,
+              tamanho: item.cart_tamanho
+            });
+          });
+          formData.cpf_cliente = $localStorage.currentUser.cpf_id;
+          crudService.post('carrinho', formData).then(
+            (response)=>{
+          }, (err)=>{
+            console.log('err', err);
+          });
+        }else {
+          $localStorage.anonyCart = vm.products;
+        }
+
+      } else {
+        console.log('cart is empty, do nothing');
+      }
+    }
+
+  });
+
 }
 
 export default cartController;

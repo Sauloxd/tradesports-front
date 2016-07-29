@@ -5,7 +5,7 @@ var loginCtrl = function (crudService, authService, $state, $uibModalInstance) {
   vm.login = function() {
     authService.login(vm.user, vm.password, function (result) {
       if (result === true) {
-          $state.go('cart');
+          $state.go('carrinho');
           $uibModalInstance.dismiss('cancel');
       }
       vm.error = !result;

@@ -1,6 +1,6 @@
 import TSConfig from '../factories/constants.js';
 
-function authService($http, $localStorage, $state) {
+function authService($http, $localStorage, $state, cartService) {
   var service = {};
 
   var login = function(login, senha, callback) {
@@ -15,7 +15,9 @@ function authService($http, $localStorage, $state) {
           $http.defaults.headers.common.Authorization = response.data.token;
 
           // execute callback with true to indicate successful login
-          callback(true);
+          cartService.init().then(()=>{
+            callback(true);
+          });
         }
       }, function(err) {
         console.log('err', err);
@@ -25,6 +27,7 @@ function authService($http, $localStorage, $state) {
 
   var logout = function() {
     // remove user from local storage and clear http auth header
+    // cartService.destroy();
     delete $localStorage.currentUser;
     $http.defaults.headers.common.Authorization = '';
     $state.go('home');
