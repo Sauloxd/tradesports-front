@@ -1,6 +1,6 @@
 import '!ng-cache!../modals/login.html';
 
-var navbarCtrl = function (crudService, $uibModal, $localStorage, authService) {
+var navbarCtrl = function (crudService, $uibModal, $localStorage, authService, $state) {
   var vm = this;
   vm.cart = {};
   if(vm.isLogged = !!$localStorage.currentUser) {
@@ -20,6 +20,7 @@ var navbarCtrl = function (crudService, $uibModal, $localStorage, authService) {
 
   vm.logout = function () {
       authService.logout();
+      vm.isLogged = false;
   };
 
 }

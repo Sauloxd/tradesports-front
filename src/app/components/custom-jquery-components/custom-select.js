@@ -1,6 +1,4 @@
 var customSelect = function(){
-  console.log('custom select loaded!');
-  console.log('>>', $('.custom_select'));
   $('.custom_select').each(function(){
     var list = $(this).children('ul'),
       select = $(this).find('select'),

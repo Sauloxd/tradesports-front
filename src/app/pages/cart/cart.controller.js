@@ -1,16 +1,4 @@
 var cartController = function (crudService, $localStorage, $scope, promocaoService, $state, $rootScope, cartService) {
-  console.log('the current user is: ', $localStorage.currentUser);
-
-  var currentUser = $localStorage.currentUser;
-
-  //TODO: REMOVE THIS :
-  if(!currentUser){
-    alert('loga ae parça!');
-    $state.go('home');
-    var currentUser = {};
-  }
-
-  //Sadly the events in $scope are not in this;
   var vm = this;
   vm.frete = {};
   vm.frete.isFree = false;
@@ -19,12 +7,15 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   vm.promocao = 0;
   vm.subtotal = 0;
   vm.products = [];
-  //TODO: implement for offline cart!!!!
-  console.log('carrinho: ', currentUser.cart);
-  vm.products = currentUser.cart.items;
+
+  if ($localStorage.currentUser) {
+    vm.products = $localStorage.currentUser.cart.items;
+  } else {
+    vm.products = $localStorage.anonyCart;
+  }
+
   crudService.get('promocoes')
     .then(function(response){
-      //TODO: Ta meio burro isso mas eu to bebado
       response.data.forEach((promocao) => {
         if(promocao.tipo == 0) {
           vm.promocao = promocaoService.produto[0];
@@ -124,27 +115,29 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
 
   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
     if(fromState.name === 'carrinho'){
-      if(currentUser.cart) {
-        var formData = {};
-        formData.item = [];
-        vm.products.forEach((item)=>{
-          formData.item.push({
-            quantidade: item.cart_quantidade,
-            idProduto: item.prod_idproduto,
-            tamanho: item.cart_tamanho
+      if(vm.products[0]) {
+        if($localStorage.currentUser){
+          var formData = {};
+          formData.item = [];
+          vm.products.forEach((item)=>{
+            formData.item.push({
+              quantidade: item.cart_quantidade,
+              idProduto: item.prod_idproduto,
+              tamanho: item.cart_tamanho
+            });
           });
-        });
-        console.log('vm.products: ', vm.products);
-        formData.cpf_cliente = currentUser.cpf_id;
-        console.log('formData:', formData);
-        crudService.post('carrinho', formData).then(
-          (response)=>{
-          alert('sucesso! ', response);
-        }, (err)=>{
-          console.log('err', err);
-        });
-      }else {
-        console.log('loga ae parça');
+          formData.cpf_cliente = $localStorage.currentUser.cpf_id;
+          crudService.post('carrinho', formData).then(
+            (response)=>{
+          }, (err)=>{
+            console.log('err', err);
+          });
+        }else {
+          $localStorage.anonyCart = vm.products;
+        }
+
+      } else {
+        console.log('cart is empty, do nothing');
       }
     }
 

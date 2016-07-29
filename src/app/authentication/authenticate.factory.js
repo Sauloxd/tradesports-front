@@ -16,9 +16,6 @@ function authService($http, $localStorage, $state, cartService) {
 
           // execute callback with true to indicate successful login
           cartService.init().then(()=>{
-            //TODO: if offline, update the currentUser cart to the offline one
-            
-            console.log('iniciei o cart');
             callback(true);
           });
         }

@@ -3,7 +3,6 @@ function cartService($http, crudService, $localStorage, $q) {
   vm.cart = {};
   vm.cart.items = [];
 
-
   return {
     getCliente: function() {
       return vm.cart.cpf_cliente;
@@ -17,7 +16,6 @@ function cartService($http, crudService, $localStorage, $q) {
         .then(function(response){
           $localStorage.currentUser.cart = vm.cart;
           vm.cart.items = response.data;
-          console.log('vm.cart.items', vm.cart.items);
         }, function(err) {
           $q.reject(response.data);
           console.log('Failed to init Cart', err);
@@ -26,7 +24,6 @@ function cartService($http, crudService, $localStorage, $q) {
     removeItem: function(id_produto){
       return crudService.delete('carrinho', $localStorage.currentUser.cpf_id, {cart: {id_produto: id_produto}})
         .then(function(){
-          console.log('deleted with succ');
           crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
             .then(function(response){
               if($localStorage.currentUser) {
@@ -43,13 +40,11 @@ function cartService($http, crudService, $localStorage, $q) {
         });
     },
     update: function() {
-      console.log('update cart');
       return crudService.getById('carrinho', $localStorage.currentUser.cpf_id)
         .then(function(response){
           if($localStorage.currentUser) {
             vm.cart.items = response.data;
             $localStorage.currentUser.cart = vm.cart;
-            console.log('my cart: ', vm.cart.items);
           }
         }, function(err) {
           $q.reject(response.data);

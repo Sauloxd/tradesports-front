@@ -38,8 +38,3 @@ export default angular.module('app.cart', [uirouter, crudService])
   .directive('cartItem', cartItemDirective)
   .controller('cartController', cartController)
   .name; //Exporta o nome do modulo pra poder por na injecao de dependencia do angular
-
-
-//TODO: implement, onStateChange of cart, send a put to tdb carrinho to update models
-
-//TODO: maybe navbar can be a directive with single scope?
