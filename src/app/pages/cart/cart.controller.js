@@ -60,63 +60,11 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
     vm.total = (vm.subtotal - (vm.subtotal * vm.promocao /100) + vm.frete.price).toFixed(2);
   };
 
-  vm.mockCheckout = function() {
-
-    var data = {}
-    data.cpf_cliente = currentUser.cpf_id
-    data.valor = vm.total
-    data.metodo_de_pagamento = 'cartao'
-    data.imagemNF = 'imagem da nota'
-    data.notaFiscal = 'nota'
-    data.estado = 'legal'
-
-    crudService.post('compra', data).then(function(response) {
-      var idCompra = response.data[0].idcompra
-
-      var dataent = {}
-      dataent.idCompra = idCompra
-      dataent.prazo = new Date()
-
-      crudService.post('entrega', dataent).then(function(res) {
-        var idEntrega = res.data[0].identrega
-
-        for(var i = 0; i < vm.products.length; i++) {
-
-          var datapc = {}
-          datapc.idCompra = idCompra
-          datapc.idProduto = vm.products[i].prod_idproduto
-          datapc.quantidade = vm.products[i].cart_quantidade
-
-          if(parseInt(datapc.quantidade) <= vm.products[i].prod_quantidade) {
-            datapc.idEntrega = idEntrega
-
-            var dataprod = {}
-            dataprod.valor = vm.products[i].prod_valor
-            dataprod.nome = vm.products[i].prod_nome
-            dataprod.imagem = vm.products[i].prod_imagem
-            dataprod.descricao = vm.products[i].prod_description
-            dataprod.peso = vm.products[i].prod_peso
-            dataprod.tamanho = vm.products[i].cart_tamanho
-            dataprod.fabricante = vm.products[i].prod_fabricante
-            dataprod.tipo = vm.products[i].prod_tipo
-            dataprod.quantidade = vm.products[i].prod_quantidade - datapc.quantidade
-
-            crudService.update('produto', vm.products[i].prod_idproduto, dataprod)
-          }
-
-          crudService.post('produtoCompra', datapc)
-        }
-      })
-
-    }, function(err) {
-      console.log('error', err);
-    });
-  }
-
   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
     if(fromState.name === 'carrinho'){
       if(vm.products[0]) {
         if($localStorage.currentUser){
+          $localStorage.currentUser.total = vm.total;
           var formData = {};
           formData.item = [];
           vm.products.forEach((item)=>{
