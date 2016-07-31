@@ -36,7 +36,7 @@ var myAccCtrl = function (crudService, $localStorage) {
       .then((response)=>{
         console.log(response);
       });
-      
+
     crudService.getById('cliente', $localStorage.currentUser.cpf_id)
       .then((response)=>{
         vm.user = response.data[0];
