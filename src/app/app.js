@@ -10,6 +10,7 @@ import routing from './app.config';
 import home from './pages/home';
 import cart from './pages/cart';
 import checkout from './pages/checkout';
+import myAcc from './pages/my-account';
 import login from './pages/login/login.controller';
 import auth from './authentication';
 import navbarCtrl from './components/navbar/navbar.controller';
@@ -25,7 +26,7 @@ function initAnonyCart($localStorage) {
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter, modal, ngStorage, home, cart, login, auth, promocao, prodConstants, checkout])
+angular.module(MODULE_NAME, [uirouter, modal, ngStorage, home, cart, login, auth, promocao, prodConstants, checkout, myAcc])
   .config(routing)
   .controller('initAnonyCart', initAnonyCart)
   .controller('navbarCtrl', navbarCtrl);

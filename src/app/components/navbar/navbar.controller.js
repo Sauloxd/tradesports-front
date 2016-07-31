@@ -23,6 +23,20 @@ var navbarCtrl = function (crudService, $uibModal, $localStorage, authService, $
       vm.isLogged = false;
   };
 
+  vm.goToMyAcc = function () {
+    if(vm.isLogged = !!$localStorage.currentUser) {
+      $state.go('minha-conta');
+    } else {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'login.html',
+        controller: 'loginCtrl',
+        controllerAs: 'login',
+        size: 'md'
+      });
+    }
+  }
+
 }
 
 export default navbarCtrl;
