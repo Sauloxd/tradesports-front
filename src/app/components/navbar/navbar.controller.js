@@ -1,6 +1,6 @@
 import '!ng-cache!../modals/login.html';
 
-var navbarCtrl = function (crudService, $uibModal, $localStorage, authService, $state) {
+var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, authService, $state) {
   var vm = this;
   vm.cart = {};
   if(vm.isLogged = !!$localStorage.currentUser) {
@@ -35,6 +35,20 @@ var navbarCtrl = function (crudService, $uibModal, $localStorage, authService, $
         size: 'md'
       });
     }
+  }
+
+  vm.filter = function(genero, tipo) {
+    var data = {}
+    data.genero = [genero]
+    data.tipo = [tipo]
+    crudService.getWithFilter('produto', data)
+      .then(function(response) {
+        console.log(response)
+        $rootScope.$emit('rootScope:newProducts', response.data.slice(0, 10)); // $rootScope.$on
+        console.log(vm.products)
+      }, function(err) {
+        console.log('error', err)
+      })
   }
 
 }
