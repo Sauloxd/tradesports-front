@@ -12,7 +12,7 @@ import cart from './pages/cart';
 import checkout from './pages/checkout';
 import myAcc from './pages/my-account';
 import login from './pages/login/login.controller';
-import cadastro from './pages/cadastro/cadastro.controller';
+import cadastro from './pages/cadastro';
 import auth from './authentication';
 import navbarCtrl from './components/navbar/navbar.controller';
 
