@@ -24,6 +24,16 @@ var crudService = function ($http, $q) {
       .get(TSConfig.urlBase + table + "/" + searchId)
   }
 
+  crud.getWithFilter = function(table, formData) {
+    return $http
+      .post(TSConfig.urlBase + table + "/filter", formData)
+      .then(function(response){
+        return response;
+      },function(response){
+          return $q.reject(response.data);
+    });
+  }
+
   crud.delete = function(table, id, options){
     if (options){
       console.log(TSConfig.urlBase + table + "/" + id + "/" + options.cart.id_produto);
