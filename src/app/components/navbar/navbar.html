@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row clearfix">
         <div class="col-lg-4 col-md-4 col-sm-3 t_xs_align_c">
-          <p class="f_size_small" ng-if="!nav.isLogged">Bem vindo visitante, você pode	<a href="#" ng-click="nav.openLogin()">Entrar</a> ou <a href="#">Criar uma Conta</a> </p>
+          <p class="f_size_small" ng-if="!nav.isLogged">Bem vindo visitante, você pode	<a href="#" ng-click="nav.openLogin()">Entrar</a> ou <a ng-click="nav.openSignup()" href="#">Criar uma Conta</a> </p>
           <p class="f_size_small" ng-if="nav.isLogged">Bem vindo <strong>{{nav.nome}}</strong>, deseja	<a href="#" ng-click="nav.logout()">Sair?</a> </p>
         </div>
         <nav class="col-lg-4 col-md-4 col-sm-6 t_align_c t_xs_align_c">
@@ -65,31 +65,31 @@
               <div class="f_left f_xs_none">
                 <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">Homens</b>
                 <ul class="sub_menu first">
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(0,"Casual")>Casual</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(0,"Chuteira")>Chuteira</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(0,"Corrida")>Corrida</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(0,"Social")>Social</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(0,"Skate")>Skate</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(0,"Casual")>Casual</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(0,"Chuteira")>Chuteira</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(0,"Corrida")>Corrida</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(0,"Social")>Social</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(0,"Skate")>Skate</a></li>
                 </ul>
               </div>
               <div class="f_left m_left_10 m_xs_left_0 f_xs_none">
                 <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">Mulheres</b>
                 <ul class="sub_menu">
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(1,"Casual")>Casual</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(1,"Chuteira")>Chuteira</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(1,"Corrida")>Corrida</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(1,"Social")>Social</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(1,"Skate")>Skate</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(1,"Casual")>Casual</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(1,"Chuteira")>Chuteira</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(1,"Corrida")>Corrida</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(1,"Social")>Social</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(1,"Skate")>Skate</a></li>
                 </ul>
               </div>
               <div class="f_left m_left_10 m_xs_left_0 f_xs_none">
                 <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">Crianças</b>
                 <ul class="sub_menu">
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(2,"Casual")>Casual</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(2,"Chuteira")>Chuteira</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(2,"Corrida")>Corrida</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(2,"Social")>Social</a></li>
-                  <li><a class="color_dark tr_delay_hover" ng-click=nav.filter(2,"Skate")>Skate</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(2,"Casual")>Casual</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(2,"Chuteira")>Chuteira</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(2,"Corrida")>Corrida</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(2,"Social")>Social</a></li>
+                  <li><a class="color_dark tr_delay_hover" href="#" ng-click=nav.filter(2,"Skate")>Skate</a></li>
                 </ul>
               </div>
               <img src="../../../public/images/logo_mais_fudidao.png" width="210" class="d_sm_none f_right m_bottom_10" alt="">

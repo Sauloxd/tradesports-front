@@ -18,15 +18,15 @@ var homeController = function ($rootScope, crudService, $window) {
 	});
 
 	vm.nextPage = function() {
+		smoothScroll(200, 800)
 		vm.products = vm.allProducts.slice(vm.page * 12, (vm.page + 1) * 12)
 		vm.page++
-		smoothScroll(200, 800)
 	}
 
 	vm.lastPage = function() {
-		vm.products = vm.allProducts.slice((vm.page - 1) * 12, vm.page * 12)
-		vm.page--
 		smoothScroll(200, 800)
+		vm.page--
+		vm.products = vm.allProducts.slice((vm.page - 1) * 12, vm.page * 12)
 	}
 }
 

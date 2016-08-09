@@ -5,7 +5,7 @@ var loginCtrl = function (crudService, authService, $state, $uibModalInstance) {
   vm.login = function() {
     authService.login(vm.user, vm.password, function (result) {
       if (result === true) {
-          $state.go('carrinho');
+          $state.reload()
           $uibModalInstance.dismiss('cancel');
       }
       vm.error = !result;
@@ -15,6 +15,23 @@ var loginCtrl = function (crudService, authService, $state, $uibModalInstance) {
 
   vm.close = function() {
     $uibModalInstance.dismiss('cancel');
+  };
+
+  vm.signup = function() {
+
+    var data = {}
+    data.cpf = vm.cpf
+    data.nome = vm.name
+    data.login = vm.user
+    data.senha = vm.password
+    data.telefone = vm.tel
+    data.email = vm.email
+
+    crudService.post('cliente', data)
+      .then(function(response) {
+        vm.login()
+      })
+
   };
 };
 

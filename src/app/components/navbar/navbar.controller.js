@@ -1,4 +1,5 @@
 import '!ng-cache!../modals/login.html';
+import '!ng-cache!../modals/signup.html';
 
 var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, authService, $state) {
   var vm = this;
@@ -14,6 +15,16 @@ var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, au
       templateUrl: 'login.html',
       controller: 'loginCtrl',
       controllerAs: 'login',
+      size: 'md'
+    });
+  };
+
+  vm.openSignup = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'signup.html',
+      controller: 'loginCtrl',
+      controllerAs: 'signup',
       size: 'md'
     });
   };
@@ -43,9 +54,7 @@ var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, au
     data.tipo = [tipo]
     crudService.getWithFilter('produto', data)
       .then(function(response) {
-        console.log(response)
         $rootScope.$emit('rootScope:newProducts', response.data);
-        console.log(vm.products)
       }, function(err) {
         console.log('error', err)
       })
