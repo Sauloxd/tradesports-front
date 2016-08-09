@@ -54,9 +54,7 @@ var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, au
     data.tipo = [tipo]
     crudService.getWithFilter('produto', data)
       .then(function(response) {
-        console.log(response)
         $rootScope.$emit('rootScope:newProducts', response.data);
-        console.log(vm.products)
       }, function(err) {
         console.log('error', err)
       })
