@@ -60,6 +60,18 @@ var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, au
       })
   }
 
+  vm.search = function() {
+    if(vm.searchName === undefined) {
+      vm.searchName = ''
+    }
+    crudService.getByName('produto', vm.searchName)
+      .then(function(response) {
+        $rootScope.$emit('rootScope:newProducts', response.data)
+      }, function(err) {
+        console.log('error', err)
+      })
+  }
+
 }
 
 export default navbarCtrl;

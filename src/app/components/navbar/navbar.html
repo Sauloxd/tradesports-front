@@ -9,9 +9,8 @@
         </div>
         <nav class="col-lg-4 col-md-4 col-sm-6 t_align_c t_xs_align_c">
           <ul class="d_inline_b horizontal_list clearfix f_size_small users_nav">
-            <li><a ng-click="nav.goToMyAcc()" class="default_t_color">Minha Conta</a></li>
-            <li><a href="orders_list.html" class="default_t_color">Carrinho</a></li>
-            <li><a href="checkout.html" class="default_t_color">Finalizar Compra</a></li>
+            <li><a ng-click="nav.goToMyAcc()" href="#" class="default_t_color">Minha Conta</a></li>
+            <li><a href="/carrinho" class="default_t_color">Carrinho</a></li>
           </ul>
         </nav>
       </div>
@@ -35,8 +34,8 @@
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <form class="relative type_2" role="search">
-              <input type="text" placeholder="Buscar" name="search" class="r_corners f_size_medium full_width">
-              <button class="f_right search_button tr_all_hover f_xs_none">
+              <input type="text" placeholder="Buscar" name="search" class="r_corners f_size_medium full_width" ng-model="nav.searchName">
+              <button class="f_right search_button tr_all_hover f_xs_none" ng-click="nav.search()">
                 <i class="fa fa-search"></i>
               </button>
             </form>
@@ -95,7 +94,6 @@
               <img src="../../../public/images/logo_mais_fudidao.png" width="210" class="d_sm_none f_right m_bottom_10" alt="">
             </div>
           </li>
-          <li class="relative f_xs_none m_xs_bottom_5"><a href="contact.html" class="tr_delay_hover color_light tt_uppercase"><b>Contato</b></a></li>
         </ul>
       </nav>
       <ul class="f_right horizontal_list clearfix t_align_l t_xs_align_c site_settings d_xs_inline_b f_xs_none">
@@ -106,7 +104,7 @@
               <i class="fa fa-shopping-cart"></i>
               <span class="count tr_delay_hover type_2 circle t_align_c" >{{nav.cart.qtd || 0}} </span>
             </span>
-            <b>$355</b>
+            <b>$0</b>
           </a>
           <!-- TODO: iw would be nice to have this -->
           <!-- <div ng-include="'cart-recently.html'"></div> -->
