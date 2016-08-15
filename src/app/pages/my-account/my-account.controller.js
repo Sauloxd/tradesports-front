@@ -26,7 +26,12 @@ var myAccCtrl = function (crudService, $localStorage) {
 
 
   vm.saveUserData = function(){
-    alert('not ready!');
+    $localStorage.currentUser.nome = vm.user.nome;
+    crudService.update('cliente', vm.user.cpf, vm.user).then(()=>{
+      alert('sucesso!');
+    }, (err)=>{
+      console.log('deu pau loko', err)
+    })
   }
 
   vm.SalvarNovoEnd = function () {
