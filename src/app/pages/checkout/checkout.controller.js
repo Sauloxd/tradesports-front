@@ -1,6 +1,7 @@
 var checkoutCtrl = function (crudService, $localStorage, $state, cartService) {
   var vm = this;
   vm.showAddress = false;
+  vm.showCartao = false
   crudService.getById('endereco', $localStorage.currentUser.cpf_id)
     .then((response)=>{
       vm.enderecos = response.data;
@@ -9,7 +10,15 @@ var checkoutCtrl = function (crudService, $localStorage, $state, cartService) {
 
   vm.radioSelected = function(index) {
     vm.endereco = vm.enderecos[index];
-    vm.showAddress = true;
+    vm.showAddress = true
+  }
+
+  vm.cartaoSelected = function() {
+    vm.showCartao = true
+  }
+
+  vm.cartaoNotSelected = function() {
+    vm.showCartao = false
   }
 
   vm.fecharCompra = function() {

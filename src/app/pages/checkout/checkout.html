@@ -33,19 +33,15 @@
           <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45" ng-if="coVm.showAddress">
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12">
-                <h5 class="fw_medium m_bottom_15">Novo Endereço</h5>
+                <h5 class="fw_medium m_bottom_15">Endereço</h5>
                 <form>
                   <ul>
-                    <li class="m_bottom_15">
-                      <label for="c_name_2" class="d_inline_b m_bottom_5">Nome</label>
-                      <input disabled type="text" name="novoEndNome" ng-model="coVm.endereco.nome" class="r_corners full_width">
-                    </li>
                     <li class="m_bottom_15">
                       <label for="a_name_1" class="d_inline_b m_bottom_5">Rua</label>
                       <input disabled type="text"  name="rua" ng-model="coVm.endereco.rua" class="r_corners full_width">
                     </li>
                     <li class="m_bottom_15">
-                      <label for="f_name_2" class="d_inline_b m_bottom_5">numero</label>
+                      <label for="f_name_2" class="d_inline_b m_bottom_5">Número</label>
                       <input disabled type="text" name="numero" ng-model="coVm.endereco.numero" class="r_corners full_width">
                     </li>
                     <li class="m_bottom_15">
@@ -100,7 +96,7 @@
           </div>
           <h2 class="tt_uppercase color_dark m_bottom_30">Pagamento</h2>
           <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45">
-              <input id="boleto" type="radio" checked name="radio_2" class="d_none" ng-model="coVm.payment" value="boleto">
+              <input id="boleto" type="radio" checked name="radio_2" class="d_none" ng-model="coVm.payment" value="boleto" ng-click="coVm.cartaoNotSelected()">
               <label for="boleto"></label>
               <figcaption class="d_table d_sm_block">
                 <div class="d_table_cell d_sm_block p_sm_right_0 p_right_45 m_mxs_bottom_5">
@@ -109,12 +105,40 @@
                 </div>
               </figcaption>
             <hr class="m_bottom_20">
-              <input id="cartao" type="radio" name="radio_2" class="d_none" ng-model="coVm.payment" value="cartao">
+              <input id="cartao" type="radio" name="radio_2" class="d_none" ng-model="coVm.payment" value="cartao" ng-click="coVm.cartaoSelected()">
               <label for="cartao"></label>
               <figcaption>
                 <h5 class="color_dark fw_medium m_bottom_15 m_sm_bottom_5">Cartão de Crédito</h5>
                 <p>Pagamento via Cartão de Crédito</p>
               </figcaption>
+          </div>
+          <div class="bs_inner_offsets bg_light_color_3 shadow r_corners m_bottom_45" ng-if="coVm.showCartao">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <h5 class="fw_medium m_bottom_15">Dados do Cartão</h5>
+                <form>
+                  <ul>
+                    <li class="m_bottom_15">
+                      <label for="cartaoNome" class="d_inline_b m_bottom_5">Nome do Portador</label>
+                      <input type="text" name="cartaoNome" ng-model="coVm.cartao.nome" class="r_corners full_width">
+                    </li>
+                    <li class="m_bottom_15">
+                      <label for="numCartao" class="d_inline_b m_bottom_5">Número do Cartão</label>
+                      <input type="number" min="1000000000000000" max="9999999999999999" name="numCartao" ng-model="coVm.cartao.numero" class="r_corners full_width">
+                    </li>
+                    <li class="m_bottom_15">
+                      <label for="cartaoCVV" class="d_inline_b m_bottom_5">CVV</label>
+                      <input type="number" max="9999" name="cartaoCVV" ng-model="coVm.cartao.cvv" class="r_corners full_width">
+                    </li>
+                    <li class="m_bottom_15">
+                      <label for="dataCartao" class="d_inline_b m_bottom_5">Data de Validade</label>
+                      <input type="month" name="dataCartao" ng-model="coVm.cartai.data" class="r_corners full_width">
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+
           </div>
           <button class="button_type_6 bg_scheme_color f_size_large f_right r_corners tr_all_hover color_light m_bottom_20" ng-click="coVm.fecharCompra()">Finalizar Compra</button>
 	       </section>
