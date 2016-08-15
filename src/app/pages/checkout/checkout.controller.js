@@ -21,7 +21,7 @@ var checkoutCtrl = function (crudService, $localStorage, $state, cartService) {
     data.idEndereco = vm.endereco.idendereco;
     data.imagemNF = 'imagem da nota';
     data.notaFiscal = 'nota';
-    data.estado = 'legal';
+    data.estado = 0;
     console.log('my data: ',data);
     console.log('products = ', $localStorage.currentUser.cart.items);
 
@@ -55,6 +55,7 @@ var checkoutCtrl = function (crudService, $localStorage, $state, cartService) {
             dataprod.tamanho = products[i].cart_tamanho
             dataprod.fabricante = products[i].prod_fabricante
             dataprod.tipo = products[i].prod_tipo
+            dataprod.genero = products[i].prod_genero
             dataprod.quantidade = products[i].prod_quantidade - datapc.quantidade
 
             crudService.update('produto', products[i].prod_idproduto, dataprod)

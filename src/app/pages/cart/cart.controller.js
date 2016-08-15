@@ -24,6 +24,10 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
         }else {
           vm.freteGratis = promocaoService.produto[2];
         };
+        if (vm.products.length == 0) {
+          vm.promocao = 0;
+        }
+
       });
       updateTotal();
 
