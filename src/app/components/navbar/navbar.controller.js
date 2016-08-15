@@ -32,6 +32,7 @@ var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, au
   vm.logout = function () {
       authService.logout();
       vm.isLogged = false;
+      $localStorage.anonyCart = [];
   };
 
   vm.goToMyAcc = function () {
