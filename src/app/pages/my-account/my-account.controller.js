@@ -45,6 +45,14 @@ var myAccCtrl = function (crudService, $localStorage) {
       });
 
   }
+
+  crudService.getById('compraByClient', $localStorage.currentUser.cpf_id)
+    .then((response)=>{
+      vm.compras = response.data;
+      console.log('user> ', response.data);
+    });
+
+
 }
 
 export default myAccCtrl;
