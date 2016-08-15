@@ -19,6 +19,14 @@ var loginCtrl = function (crudService, authService, $state, $uibModalInstance) {
 
   vm.signup = function() {
 
+    vm.nameError = false
+    vm.loginError = false
+    vm.passError = false
+    vm.telError = false
+    vm.emailError = false
+    vm.cpfError = false
+    vm.unexError = false
+
     var data = {}
     data.cpf = vm.cpf
     data.nome = vm.name
@@ -27,10 +35,32 @@ var loginCtrl = function (crudService, authService, $state, $uibModalInstance) {
     data.telefone = vm.tel
     data.email = vm.email
 
-    crudService.post('cliente', data)
-      .then(function(response) {
-        vm.login()
-      })
+    if(vm.name === undefined || vm.name == '') {
+      vm.nameError = true
+    }
+    if(vm.user === undefined || vm.user == '') {
+      vm.loginError = true
+    }
+    if(vm.password === undefined || vm.password.length < 4) {
+      vm.passError = true
+    }
+    if(vm.tel === undefined || vm.tel.toString().length < 10) {
+      vm.telError = true
+    }
+    if(vm.email === undefined || vm.email == '') {
+      vm.emailError = true
+    } 
+    if(vm.cpf === undefined || vm.cpf.toString().length != 11) {
+      vm.cpfError = true
+    } 
+    if(!vm.nameError && !vm.loginError && !vm.passError && !vm.telError && !vm.emailError && !vm.cpfError){
+      crudService.post('cliente', data)
+        .then(function(response) {
+          vm.login()
+        }, function(err) {
+          vm.unexError = true
+        })
+    }
 
   };
 };
