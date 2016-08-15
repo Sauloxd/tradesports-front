@@ -17,11 +17,11 @@ var cartController = function (crudService, $localStorage, $scope, promocaoServi
   crudService.get('promocoes')
     .then(function(response){
       response.data.forEach((promocao) => {
-        if(promocao.tipo == 0) {
+        if(promocao.tipo == 0 && promocao.estado == 'Ativo') {
           vm.promocao = promocaoService.produto[0];
-        }else if(promocao.tipo == 1) {
+        }else if(promocao.tipo == 1 && promocao.estado == 'Ativo') {
           vm.promocao = promocaoService.produto[1];
-        }else {
+        }else if(promocao.estado == 'Ativo'){
           vm.freteGratis = promocaoService.produto[2];
         };
         if (vm.products.length == 0) {

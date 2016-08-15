@@ -63,13 +63,15 @@ var navbarCtrl = function ($rootScope, crudService, $uibModal, $localStorage, au
 
   vm.search = function() {
     if(vm.searchName === undefined) {
-      vm.searchName = ''
+      vm.searchName = 't'
     }
     crudService.getByName('produto', vm.searchName)
       .then(function(response) {
         $rootScope.$emit('rootScope:newProducts', response.data)
+        vm.searchName = undefined
       }, function(err) {
         console.log('error', err)
+        vm.searchName = undefined
       })
   }
 
